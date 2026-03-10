@@ -51,6 +51,10 @@ cd MTC-WTNet
 pip install -r requirements.txt
 ```
 
+## Pre-trained Weights
+
+For initializing the SwinViT backbone, the pre-trained weights on the **BTCV abdominal dataset** can be found in the [Swin-UNETR repository](https://github.com/LeonidAlekseev/Swin-UNETR). Please download the corresponding pretrained checkpoint and specify its path when needed for training or fine-tuning.
+
 ## Usage
 
 ### Training
@@ -69,30 +73,30 @@ python train.py --data_path /path/to/your/data --epochs 100 --batch_size 2
 
 ## Project Structure
 
-```
+```text
 MTC-WTNet/
 ├── models/                 # Core model implementations
-│   ├── mtc_WTnet.py      # Main MTC-WTNet architecture
-│   ├── FPN.py             # Feature Pyramid Network
-│   ├── kan.py             # Kolmogorov-Arnold Network components
-│   ├── loss.py            # Multi-task loss functions
+│   ├── mtc_WTnet.py        # Main MTC-WTNet architecture
+│   ├── FPN.py              # Feature Pyramid Network
+│   ├── kan.py              # Kolmogorov-Arnold Network components
+│   ├── loss.py             # Multi-task loss functions
 │   └── __init__.py
 ├── data/                   # Data loading and preprocessing
-│   ├── dataset.py         # Custom NRRD dataset implementation
+│   ├── dataset.py          # Custom NRRD dataset implementation
 │   └── __init__.py
 ├── utils/                  # Utility functions
-│   ├── utils.py           # Training and evaluation utilities
-│   ├── metrics.py         # Evaluation metrics
+│   ├── utils.py            # Training and evaluation utilities
+│   ├── metrics.py          # Evaluation metrics
 │   └── __init__.py
-├── train.py               # Training script
-├── requirements.txt       # Dependencies
+├── train.py                # Training script
+├── requirements.txt        # Dependencies
 └── README.md
 ```
 
 ## Dataset Structure
 
 The expected dataset structure:
-```
+```text
 your_data/
 ├── train/
 │   ├── 0/  # No metastasis
