@@ -1,5 +1,5 @@
 """
-MTC-HSDNet Utils Package
+SCoRE Utils Package
 
 This package contains utility functions and helper modules:
 - utils: Training and evaluation utilities

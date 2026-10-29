@@ -1,5 +1,5 @@
 """
-MTC-HSDNet Data Package
+SCoRE Data Package
 
 This package contains data loading and preprocessing utilities:
 - dataset: Custom dataset implementations for NRRD medical images

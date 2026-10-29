@@ -11,7 +11,7 @@ from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
 from data.dataset import MyNRRDDataSet
-from models.mtc_hsdnet import MTC_HSDNet as create_model
+from models.score import SCoRE as create_model
 from models.loss import MultiTaskLoss
 from utils.utils import train_one_epoch, evaluate
 
@@ -244,8 +244,8 @@ def main(args):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument('--data_path', default="/home/yuwenjing/data/transfer_VOI_test")
-    ap.add_argument('--weights', default='/home/yuwenjing/DeepLearning_ywj/WTMNet/supervised_suprem_swinunetr_2100.pth',
-                    help='Path to pre-trained weights')
+    ap.add_argument('--weights', default=None,
+                    help='Path to pre-trained weights (optional)')
 
     ap.add_argument('--num_classes', type=int, default=2)
     ap.add_argument('--epochs',      type=int, default=150)

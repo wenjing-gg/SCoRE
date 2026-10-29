@@ -1,32 +1,30 @@
-# MTC-WTNet: A Multitask Collaboration Framework for Wilms’ Tumor Segmentation and Metastasis Prediction
+# SCoRE: Segmentation-Conditioned Regional Reasoning for Preoperative Metastatic Assessment of Wilms Tumor via Asymmetric Multi-Task Learning
 
-[![GitHub stars](https://img.shields.io/github/stars/wenjing-gg/MTC-WTNet?style=social)](https://github.com/wenjing-gg/MTC-WTNet/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/wenjing-gg/MTC-WTNet?style=social)](https://github.com/wenjing-gg/MTC-WTNet/network/members)
-[![Project](https://img.shields.io/badge/Project-Page-blue)](https://github.com/wenjing-gg/MTC-WTNet)
-[![arXiv](https://img.shields.io/badge/arXiv-2024.00000-b31b1b.svg)](https://arxiv.org/abs/2024.00000)
+[![GitHub stars](https://img.shields.io/github/stars/wenjing-gg/SCoRE?style=social)](https://github.com/wenjing-gg/SCoRE/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/wenjing-gg/SCoRE?style=social)](https://github.com/wenjing-gg/SCoRE/network/members)
+[![Project](https://img.shields.io/badge/Project-Page-blue)](https://github.com/wenjing-gg/SCoRE)
 
-**This repository is the official implementation of MTC-WTNet.**
+**This repository contains the SCoRE implementation for Wilms tumor segmentation and preoperative metastatic assessment.**
 
-A deep learning framework for simultaneous Wilms' tumor segmentation and metastasis prediction using multi-task collaboration and hierarchical self-distillation in a multi-level transformer fusion network.
+SCoRE connects voxel-level tumor delineation to patient-level metastatic assessment through a directed, segmentation-conditioned regional reasoning path.
 
 ## 📄 Framework
 
 <div align="center">
-  <img src="./img/main.png" alt="MTC-WTNet Paper Preview" width="800" style="border: 2px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+  <img src="./img/main.png" alt="SCoRE framework overview" width="800" style="border: 2px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
 </div>
 
 ---
 
 ## Overview
 
-MTC-WTNet is a specialized deep learning framework designed for Wilms' tumor analysis, combining multi-task collaboration and hierarchical self-distillation for simultaneous tumor segmentation and metastasis prediction. The network architecture incorporates:
+SCoRE jointly predicts the Wilms tumor mask and metastatic status from preoperative CT. Segmentation logits condition regional features before the classifier aggregates block-level evidence. The framework incorporates:
 
-- **Multi-Level Transformer Fusion** for comprehensive feature integration
-- **Hierarchical Self-Distillation** for progressive knowledge transfer
-- **Multi-Task Collaboration** between segmentation and classification tasks
-- **Swin Transformer backbone** for robust feature extraction
-- **Feature Pyramid Network (FPN)** for multi-scale feature fusion
-- **Mixture of Experts (MoE)** for adaptive feature processing
+- **Tri-planar localization** to define a tumor-centered volume of interest
+- **Inter-slice context reweighting** and hierarchical three-dimensional encoding
+- **WRT-FPN** cross-scale feature aggregation
+- **Segmentation-conditioned KV-MoE** with Kolmogorov-Arnold Network experts
+- **Uncertainty-weighted objectives and self-distillation** for joint optimization
 
 ## Requirements
 
@@ -42,8 +40,8 @@ See `requirements.txt` for detailed dependencies. Key requirements include:
 
 1. Clone the repository:
 ```bash
-git clone git@github.com:wenjing-gg/MTC-WTNet.git
-cd MTC-WTNet
+git clone https://github.com/wenjing-gg/SCoRE.git
+cd SCoRE
 ```
 
 2. Install dependencies:
@@ -74,9 +72,9 @@ python train.py --data_path /path/to/your/data --epochs 100 --batch_size 2
 ## Project Structure
 
 ```text
-MTC-WTNet/
+SCoRE/
 ├── models/                 # Core model implementations
-│   ├── mtc_WTnet.py        # Main MTC-WTNet architecture
+│   ├── score.py               # SCoRE architecture and task interaction
 │   ├── FPN.py              # Feature Pyramid Network
 │   ├── kan.py              # Kolmogorov-Arnold Network components
 │   ├── loss.py             # Multi-task loss functions
@@ -114,14 +112,12 @@ your_data/
 
 ## Citation
 
-If you use this code in your research, please cite:
+Please cite the SCoRE paper:
 
 ```bibtex
-@article{mtc-WTnet,
-  title={MTC-WTNet: Multi-Task Collaboration and Hierarchical Self-Distillation in a Multi-Level Transformer Fusion Network for Wilms' Tumor Segmentation and Metastasis Prediction},
-  author={Your Name},
-  journal={Your Journal},
-  year={2024}
+@misc{zhu_score,
+  title  = {SCoRE: Segmentation-Conditioned Regional Reasoning for Preoperative Metastatic Assessment of Wilms Tumor via Asymmetric Multi-Task Learning},
+  author = {Zhu Zhu and Wenjing Yu and Wenxu Qi and Yuxin Du and Xiaohui Ma and Shuai Liu and Jie Dong and Changmiao Wang and Feiwei Qin and Gang Yu}
 }
 ```
 

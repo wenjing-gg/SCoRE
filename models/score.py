@@ -363,7 +363,7 @@ class WTFPN(nn.Module):
 
         return fpn1
 
-class MTCNet(nn.Module):
+class SCoRE(nn.Module):
     def __init__(
         self,
         img_size: Union[Sequence[int], int] = (64,64,64),
@@ -536,7 +536,7 @@ class MTCNet(nn.Module):
 
         self.teacher_moe = KV_MoE_plus(in_channels=self.fpn_channels)
 
-        # WT-FPN Feature Pyramid Network
+        # WRT-FPN feature pyramid network
         self.fpn = WTFPN(
             in_channels_list=[2*feature_size, 4*feature_size, 8*feature_size, 16*feature_size],
             fpn_channels=self.fpn_channels
